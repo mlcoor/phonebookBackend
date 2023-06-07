@@ -33,6 +33,7 @@ app.use(
   )
 );
 app.use(cors());
+app.use(express.static("build"));
 
 morgan.token("content", (request) =>
   request.method === "POST" && request.body.name
