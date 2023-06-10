@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 const app = new express();
 app.use(express.json());
-// app.use(express.static('build'));
+app.use(express.static('build'));
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :content'));
 app.use(cors());
 morgan.token('content', request =>
