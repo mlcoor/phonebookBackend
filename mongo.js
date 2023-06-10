@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 if (process.argv.length < 3) {
-  console.log("give password as argument");
+  console.log('give password as argument');
   process.exit(1);
 }
 
@@ -9,7 +9,7 @@ const password = process.argv[2];
 
 const url = `mongodb+srv://dbuser:${password}@cluster0.ya2rlb5.mongodb.net/`;
 
-mongoose.set("strictQuery", false);
+mongoose.set('strictQuery', false);
 mongoose.connect(url);
 
 const personSchema = new mongoose.Schema({
@@ -17,12 +17,12 @@ const personSchema = new mongoose.Schema({
   number: String,
 });
 
-const Person = mongoose.model("Person", personSchema);
+const Person = mongoose.model('Person', personSchema);
 
 if (process.argv.length === 3) {
-  Person.find().then((result) => {
-    console.log("phonebook:");
-    result.forEach((person) => {
+  Person.find().then(result => {
+    console.log('phonebook:');
+    result.forEach(person => {
       console.log(`${person.name} ${person.number}`);
     });
     mongoose.connection.close();
@@ -38,5 +38,5 @@ if (process.argv.length === 3) {
       console.log(`added ${person.name} number ${person.number} to phonebook`);
       mongoose.connection.close();
     })
-    .catch((error) => console.log(error));
+    .catch(error => console.log(error));
 }
